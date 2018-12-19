@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import session from 'views/Home/session-reducer';
+import home from 'views/Home/home-reducer';
 
 export default combineReducers({
-	session
+	home
 });

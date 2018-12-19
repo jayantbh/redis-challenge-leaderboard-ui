@@ -1,13 +1,235 @@
 @import 'globals/variables';
 @import 'globals/mixins';
 
-.primary-layout-container {
-	@include expanded;
-	@include centered;
+@mixin initial-state-fade-in-up {
+	opacity: 0;
+	transform: translateY(40px);
 }
 
-.routes-wrapper {
+@keyframes pulsate {
+	from { box-shadow: 0 0 0 0 $butterscotch; }
+	to { box-shadow: 0 0 0 12px $white; }
+}
+
+@keyframes fade-in-up {
+	from {
+		@include initial-state-fade-in-up;
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.container {
 	@include expanded;
-	display: flex;
+	@include centered(true);
+	background: $white-six;
+}
+
+.board {
+	height: 65vh;
+	width: 80vw;
+	border-radius: 4px;
+	background: $white;
+	box-shadow: 0 7px 10px -2px $black--18;
+	padding: 20px;
+	margin-bottom: 40px;
+	overflow: auto;
+	@include initial-state-fade-in-up;
+}
+
+.title {
+	@include centered;
+	height: 220px;
+	width: 100vw;
+	padding-right: 35px;
+	box-sizing: border-box;
+	transition: height $long-ease-out, width $long-ease-out, padding $long-ease-out;
+}
+
+.icon {
+	margin-left: 5px;
+	transform: scale(0.7);
+	transition: transform $long-ease-out;
+	z-index: 1;
+}
+
+.brand-title {
+	@include centered;
+	font-size: 40px;
+	padding: 8px;
+	margin-top: -30px;
 	flex-direction: column;
+
+	transition: opacity $smooth-ease-out, transform $smooth-ease-out;
+	transition-delay: 800ms;
+
+	span:nth-child(1) {
+		font-size: 20px;
+	}
+
+	span:nth-child(2) {
+		font-size: 50px;
+	}
+
+	span:nth-child(3) {
+		font-size: 30px;
+		letter-spacing: 5px;
+		margin-left: 7.5px;
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	padding: 16px 8px;
+	@include initial-state-fade-in-up;
+	animation: fade-in-up ($animation-standard * 3) $easing-smooth-ease-out forwards;
+
+	@for $i from 0 through 20 {
+		&:nth-child(#{$i + 1}) {
+			animation-delay: #{1400 + ($i * 100)}ms;
+		}
+	}
+}
+
+.index {
+	position: relative;
+	@include circle(30px);
+	@include centered;
+	font-size: 18px;
+	margin-right: 20px;
+
+	background-color: lighten($greyish, 15%);
+	color: darken($greyish, 45%);
+
+	.crown {
+		position: absolute;
+		top: -15px;
+		left: -9px;
+		transform: rotate(-31deg);
+		z-index: 2;
+	}
+
+	.wreath {
+		position: absolute;
+		transform: scale(1.8) translateY(3px);
+
+		path:not([fill='none']) {
+			fill: $leaf-green;
+		}
+	}
+}
+
+.row:nth-child(1) .index {
+	background-color: $light-mustard;
+	box-shadow: 0 0 0 5px darken($light-mustard, 17%), 0 0 0 8px darken($light-mustard, 22%);
+	color: darken($light-mustard, 45%);
+}
+
+.row:nth-child(2) .index {
+	background-color: $silver;
+	box-shadow: 0 0 0 4px darken($silver, 17%), 0 0 0 6px darken($silver, 22%);
+	color: darken($silver, 45%);
+
+	.wreath {
+		transform: scale(1.8) translate(-0.5px, 2px);
+		path:not([fill='none']) {
+			fill: darken($leaf-green, 15%);
+		}
+	}
+}
+
+.row:nth-child(3) .index {
+	background-color: $mango;
+	box-shadow: 0 0 0 5px darken($mango, 17%);
+	color: darken($mango, 45%);
+}
+
+.name {
+	width: 20%;
+	font-size: 24px;
+	font-weight: $weight-light;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.stages {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+}
+
+.stage {
+	display: flex;
+	align-items: center;
+}
+
+.status {
+	@include circle(24px);
+	box-shadow: $box-shadow-thin;
+	margin-left: 20px;
+
+	&.success {
+		background-color: $green-teal;
+	}
+
+	&.pending {
+		background-color: $butterscotch;
+		animation: pulsate ($animation-standard * 6) $easing-smooth-ease-out infinite;
+	}
+
+	&.failed {
+		background-color: $orange-900;
+	}
+
+	&.future {
+		background-color: $white-ten;
+		border: 1px dashed $greyish-three;
+		box-shadow: none;
+		transform: scale(0.6);
+	}
+}
+
+.bar {
+	height: 30px;
+	background-color: $light-mustard;
+	margin-right: 10px;
+	border-radius: $border-radius-standard;
+}
+
+.points {
+	@include square(30px);
+	border-radius: $border-radius-standard;
+	@include centered;
+	font-size: 16px;
+
+	background-color: $light-mustard;
+	color: darken($light-mustard, 45%);
+}
+
+.container.stage-1 {
+	.board {
+		animation: fade-in-up ($animation-standard * 3) $easing-smooth-ease-out forwards;
+		animation-delay: 1000ms;
+	}
+}
+
+.container:not(.stage-1) {
+	.title {
+		height: 100vh;
+		padding: 0;
+	}
+
+	.brand-title {
+		opacity: 0;
+		transform: translateX(-112%);
+	}
+
+	.icon {
+		transform: scale(1.4) translateX(70px) translateY(17vh);
+	}
 }

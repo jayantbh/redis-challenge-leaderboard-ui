@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { shallow } from 'enzyme';
 
-import { RESOURCE_STATE } from 'views/Home/session-reducer';
+import { RESOURCE_STATE } from 'views/Home/home-reducer';
 import Home from '../';
 
 it('renders routes if authenticated', () => {

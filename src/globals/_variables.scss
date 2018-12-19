@@ -34,6 +34,7 @@ $animation-standard: 0.25s;
 $easing-smooth-ease-out: cubic-bezier(0.4, 1.03, 0.29, 0.99);
 
 // Animations
+$long-ease-out: ($animation-standard * 6) $easing-smooth-ease-out;
 $smooth-ease-out: ($animation-standard * 3) $easing-smooth-ease-out;
 $quick-ease-out: $animation-standard $easing-smooth-ease-out;
 
@@ -42,6 +43,7 @@ $dark-seafoam: 				rgb(26, 188, 134);
 $green-blue: 					rgb(0, 188, 129);
 $topaz: 							rgb(21, 206, 171);
 $green-teal: 					rgb(19, 190, 117);
+$leaf-green:					rgb(113, 164, 55);
 $green-800:						#2e7d32;
 $green-teal-30: 			rgba(19, 190, 117, 0.3);
 $green-teal-20: 			rgba(19, 190, 117, 0.2);

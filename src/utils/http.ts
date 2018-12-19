@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { SCHEMA, normalize, serialize } from 'adapters/application';
-import { initializeRequestMocking } from 'mocks/requests';
+import { initializeRequestMocking } from 'mocks/requests/index';
 
-export const NAMESPACE = 'http://redis-challenge-leaderboard.herokuapp.com';
+export const NAMESPACE = 'https://redis-challenge-leaderboard.herokuapp.com';
 export const REQUEST_TIMEOUT = 30000;
 
 const namespacedUrl = (url) => NAMESPACE + url;
@@ -22,10 +22,9 @@ if (doMockRequests) { initializeRequestMocking(); }
 export const getRaw = (url: string, options: Object = {}): Promise<Response> => {
 	return fetch(namespacedUrl(url), { credentials: 'include', ...options }).then(response => {
 		try {
-			if (!response.ok)	return Promise.reject({status: response.status, data: response});
+			if (!response.ok)	throw {status: response.status, data: response};
 		}
 		catch (e) {
-			// do nothing as such
 			console.error(e);
 		}
 		return response;
@@ -40,7 +39,7 @@ export const getRaw = (url: string, options: Object = {}): Promise<Response> => 
  * @param {String} schema
  * @returns {Promise} `Promise<Response>`
  */
-export const get = async (url: string, options: Object = {}, schema: string = SCHEMA.GENERIC): Promise<Response> => {
+export const get = async (url: string, options: Object = {}, schema: SCHEMA = SCHEMA.GENERIC): Promise<Response> => {
 	options = modifyRequestOptions({ ...options, method: 'get' }, schema);
 	let response = await axios({ url: namespacedUrl(url), ...options });
 	return response.data;
@@ -54,7 +53,7 @@ export const get = async (url: string, options: Object = {}, schema: string = SC
  * @param {String} schema
  * @returns {Promise} `Promise<Response>`
  */
-export const post = async (url: string, options: Object = {}, schema: string = SCHEMA.GENERIC): Promise<Response> => {
+export const post = async (url: string, options: Object = {}, schema: SCHEMA = SCHEMA.GENERIC): Promise<Response> => {
 	options = modifyRequestOptions({ ...options, method: 'post' }, schema);
 	let response = await axios({ url: namespacedUrl(url), ...options });
 	return response.data;
@@ -68,7 +67,7 @@ export const post = async (url: string, options: Object = {}, schema: string = S
  * @param {String} schema
  * @returns {Promise} `Promise<Response>`
  */
-export const put = async (url: string, options: Object = {}, schema: string = SCHEMA.GENERIC): Promise<Response> => {
+export const put = async (url: string, options: Object = {}, schema: SCHEMA = SCHEMA.GENERIC): Promise<Response> => {
 	options = modifyRequestOptions({ ...options, method: 'put' }, schema);
 	let response = await axios({ url: namespacedUrl(url), ...options });
 	return response.data;
@@ -82,7 +81,7 @@ export const put = async (url: string, options: Object = {}, schema: string = SC
  * @param {String} schema
  * @returns {Promise} `Promise<Response>`
  */
-export const patch = async (url: string, options: Object = {}, schema: string = SCHEMA.GENERIC): Promise<Response> => {
+export const patch = async (url: string, options: Object = {}, schema: SCHEMA = SCHEMA.GENERIC): Promise<Response> => {
 	options = modifyRequestOptions({ ...options, method: 'patch' }, schema);
 	let response = await axios({ url: namespacedUrl(url), ...options });
 	return response.data;
@@ -97,7 +96,15 @@ export const patch = async (url: string, options: Object = {}, schema: string = 
  * @param {String} schema
  * @returns {object} `fetch` options
  */
-function modifyRequestOptions(options: Object = {}, schema: string = SCHEMA.GENERIC): {} {
+type CustomOptionsProps = {
+	formData?: boolean,
+	body?: any,
+	headers?: object
+};
+
+type ModifyRequestOptionsProps = AxiosRequestConfig & CustomOptionsProps;
+
+function modifyRequestOptions(options: ModifyRequestOptionsProps = {}, schema: SCHEMA = SCHEMA.GENERIC): {} {
 	const headers = modifyRequestHeaders(options || {});
 
 	delete options.formData;	// non-standard optional property
@@ -112,7 +119,6 @@ function modifyRequestOptions(options: Object = {}, schema: string = SCHEMA.GENE
 
 	return {
 		headers,
-		withCredentials: true,
 		transformRequest: [...axios.defaults.transformRequest, (data) => {
 			return normalize(data, schema);
 		}],
@@ -131,10 +137,10 @@ function modifyRequestOptions(options: Object = {}, schema: string = SCHEMA.GENE
  * @returns {object} request headers
  * @param options
  */
-function modifyRequestHeaders(options: {} = {}): {} {
+function modifyRequestHeaders(options: ModifyRequestOptionsProps = {}): {} {
 	let headers;
 	if (options.formData) {
-		headers = {...options.headers, "Content-Type": "application/x-www-form-urlencoded" };
+		headers = {...options.headers, 'Content-Type': 'application/x-www-form-urlencoded' };
 	}
 	return {...headers};
 }

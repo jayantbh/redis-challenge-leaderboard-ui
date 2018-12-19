@@ -1,6 +1,6 @@
-export const SCHEMA = {
-	GENERIC: "GENERIC",	// default case, we basically return the payload for this
-};
+export enum SCHEMA {
+	GENERIC = "GENERIC",	// default case, we basically return the payload for this
+}
 
 /**
  * Transform incoming payloads to fit a model
