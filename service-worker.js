@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/redis-challenge-leaderboard-ui/precache-manifest.e6529694a040961d54c2bf4c6fa2346c.js"
+  "/redis-challenge-leaderboard-ui/precache-manifest.9db3200dddc157041f8d421bbc9e1c09.js"
 );
 
 workbox.clientsClaim();
