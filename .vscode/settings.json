@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "src/App.css": true,
+    "src/{components,views}/**/*.css": true,
+    "src/index.css": true,
+    "**/*.css": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+	"name": "redis-challenge-leaderboard-ui",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"bin-dev": "nodemon --ignore bin/index.generated.js --ignore bin/_index.generated.js --exec 'yarn build-bin'",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"start": "react-scripts start",
+		"build": "react-scripts build"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"axios-mock-adapter": "^1.15.0",
+		"classnames": "^2.2.6",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"js-cookie": "^2.2.0",
+		"ls": "^0.2.1",
+		"mock-local-storage": "^1.0.5",
+		"node-sass": "^4.10.0",
+		"query-string": "5",
+		"react": "^16.4.1",
+		"react-dom": "^16.4.1",
+		"react-redux": "^5.0.7",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "2.1.1",
+		"redux": "^4.0.0",
+		"redux-devtools-extension": "^2.13.5",
+		"redux-immutable-state-invariant": "^2.1.0",
+		"redux-saga": "^0.16.0",
+		"storage.io": "^1.2.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^23.3.10",
+		"@types/node": "^10.12.17",
+		"@types/react": "^16.7.17",
+		"@types/query-string": "^6.1.1",
+		"@types/react-redux": "^6.0.11",
+		"@types/react-router-dom": "^4.3.1",
+		"@types/react-dom": "^16.0.11",
+		"flow-bin": "^0.75.0",
+		"react-test-renderer": "^16.4.2",
+		"typescript": "^3.2.2"
+	},
+	"description": "A `create-react-app` based frontend starter project, using `react-scripts` 2+.",
+	"main": "build/index.html",
+	"license": "MIT",
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	]
+}

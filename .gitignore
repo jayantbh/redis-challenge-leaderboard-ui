@@ -1,0 +1,29 @@
+# .extra.gitignore is an automatically created file.
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+*.log*
+
+src/components/**/*.css
+src/views/**/*.css
+bin/generators/**/*.css
+src/App.css
+
+.idea/workspace.xml
+.idea/dictionaries/*
+bin/_index.generated.js
