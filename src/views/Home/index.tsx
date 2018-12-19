@@ -37,7 +37,7 @@ class Home extends Component<Props> {
 
 		if (data) {
 			animationClass = css['stage-1'];
-			data = Array(3).fill(Object.values(data)).flatMap(_ => _).sort((a, b) => b.points - a.points);
+			data = Object.values(data).flatMap(_ => _).sort((a, b) => b.points - a.points);
 			maxPoints = data.reduce((acc, val) => Math.max(acc, val.points), 0);
 		}
 
