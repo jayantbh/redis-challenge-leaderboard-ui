@@ -19,8 +19,10 @@ type Resource = {
 	stages: Array<Stage>
 }
 
+type ApiResourcesFormat = { [index: number]: Resource };
+
 type Props = {
-	data: Array<Resource> | null,
+	data: ApiResourcesFormat | null,
 	status: REQUEST_STATE
 	getResources: () => void
 }
@@ -31,14 +33,14 @@ class Home extends Component<Props> {
 	}
 
 	render() {
-		let { data } = this.props;
-		console.log(data);
+		const { data } = this.props;
 		let animationClass = '', maxPoints = 0, scoreBarWidth = 110;
 
+		let resources: Array<Resource> = [];
 		if (data) {
 			animationClass = css['stage-1'];
-			data = Object.values(data).flatMap(_ => _).sort((a, b) => b.points - a.points);
-			maxPoints = data.reduce((acc, val) => Math.max(acc, val.points), 0);
+			resources = Object.values(data).sort((a, b) => b.points - a.points);
+			maxPoints = resources.reduce((acc, val) => Math.max(acc, val.points), 0);
 		}
 
 		return (
@@ -53,8 +55,8 @@ class Home extends Component<Props> {
 				</div>
 
 				<div className={css.board}>
-					{ data ?
-						data.map((item, i) => (
+					{ resources.length ?
+						resources.map((item, i) => (
 							<div key={i} className={css.row}>
 								{console.log(item)}
 								<div className={css.index}>
