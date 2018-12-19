@@ -91,6 +91,10 @@
 	@for $i from 0 through 20 {
 		&:nth-child(#{$i + 1}) {
 			animation-delay: #{1400 + ($i * 100)}ms;
+
+			.pending {
+				animation-delay: #{$i * 150}ms;
+			}
 		}
 	}
 }
@@ -105,6 +109,10 @@
 
 	background-color: lighten($greyish, 15%);
 	color: darken($greyish, 45%);
+
+	&.hide {
+		visibility: hidden;
+	}
 
 	.crown {
 		position: absolute;
@@ -124,13 +132,13 @@
 	}
 }
 
-.row:nth-child(1) .index {
+.row.gold .index {
 	background-color: $light-mustard;
 	box-shadow: 0 0 0 5px darken($light-mustard, 17%), 0 0 0 8px darken($light-mustard, 22%);
 	color: darken($light-mustard, 45%);
 }
 
-.row:nth-child(2) .index {
+.row.silver .index {
 	background-color: $silver;
 	box-shadow: 0 0 0 4px darken($silver, 17%), 0 0 0 6px darken($silver, 22%);
 	color: darken($silver, 45%);
@@ -143,7 +151,7 @@
 	}
 }
 
-.row:nth-child(3) .index {
+.row.bronze .index {
 	background-color: $mango;
 	box-shadow: 0 0 0 5px darken($mango, 17%);
 	color: darken($mango, 45%);

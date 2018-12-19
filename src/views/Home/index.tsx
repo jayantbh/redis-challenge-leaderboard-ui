@@ -43,6 +43,8 @@ class Home extends Component<Props> {
 			maxPoints = resources.reduce((acc, val) => Math.max(acc, val.points), 0);
 		}
 
+		let index = 0;
+
 		return (
 			<div className={cls(css.container, animationClass)}>
 				<div className={css.title}>
@@ -56,29 +58,41 @@ class Home extends Component<Props> {
 
 				<div className={css.board}>
 					{ resources.length ?
-						resources.map((item, i) => (
-							<div key={i} className={css.row}>
-								{console.log(item)}
-								<div className={css.index}>
-									{i === 0 ?
-										<F>
-											<img height={28} width={28} className={css.crown} src={CrownPng}/>
-											<WreathGold className={css.wreath}/>
-										</F>
-									: ''}
-									{i === 1 ? <WreathBronze className={css.wreath}/> : ''}
-									{i + 1}
+						resources.map((item, i) => {
+							let hasSameScore = false;
+							if (i > 0 && resources[i].points === resources[i - 1].points) {
+								hasSameScore = true;
+							} else if (i > 0) {
+								index = index + 1
+							}
+							return (
+								<div key={i} className={cls(css.row,
+									index === 0 && css.gold,
+									index === 1 && css.silver,
+									index === 2 && css.bronze
+								)}>
+									{console.log(item)}
+									<div className={cls(css.index, hasSameScore && css.hide)}>
+										{index === 0 ?
+											<F>
+												<img height={28} width={28} className={css.crown} src={CrownPng}/>
+												<WreathGold className={css.wreath}/>
+											</F>
+											: ''}
+										{index === 1 ? <WreathBronze className={css.wreath}/> : ''}
+										{index + 1}
+									</div>
+									<div className={css.name}>{item.title}</div>
+									<div className={css.stages}>
+										{item.stages.map((stage, k) => (
+											<div key={k} className={cls(css.status, css[stage.status])}/>
+										))}
+									</div>
+									<div className={css.bar} style={{width: (maxPoints > 0 ? (item.points / maxPoints) * scoreBarWidth : 0) + 10}}/>
+									<div className={css.points}>{item.points}</div>
 								</div>
-								<div className={css.name}>{item.title}</div>
-								<div className={css.stages}>
-									{item.stages.map((stage, k) => (
-										<div key={k} className={cls(css.status, css[stage.status])}/>
-									))}
-								</div>
-								<div className={css.bar} style={{width: (maxPoints > 0 ? (item.points / maxPoints) * scoreBarWidth : 0) + 10}}/>
-								<div className={css.points}>{item.points}</div>
-							</div>
-						))
+							);
+						})
 					: ''}
 				</div>
 			</div>
