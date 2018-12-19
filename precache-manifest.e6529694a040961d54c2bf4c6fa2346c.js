@@ -20,19 +20,19 @@ self.__precacheManifest = [
     "url": "/redis-challenge-leaderboard-ui/static/js/runtime~main.71295ab0.js"
   },
   {
-    "revision": "d8cd66d6ca31277cba52",
-    "url": "/redis-challenge-leaderboard-ui/static/js/main.d8cd66d6.chunk.js"
+    "revision": "42ed054f390aa4365a14",
+    "url": "/redis-challenge-leaderboard-ui/static/js/main.42ed054f.chunk.js"
   },
   {
     "revision": "86cefce9cdd740c022f9",
     "url": "/redis-challenge-leaderboard-ui/static/js/1.86cefce9.chunk.js"
   },
   {
-    "revision": "d8cd66d6ca31277cba52",
+    "revision": "42ed054f390aa4365a14",
     "url": "/redis-challenge-leaderboard-ui/static/css/main.6fdb4df0.chunk.css"
   },
   {
-    "revision": "b6403ce6d6c44550d28123cc89c0178a",
+    "revision": "978a78dd340732194d46f8234fdeaa05",
     "url": "/redis-challenge-leaderboard-ui/index.html"
   }
 ];
