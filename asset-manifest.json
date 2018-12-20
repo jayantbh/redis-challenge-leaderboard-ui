@@ -1,7 +1,7 @@
 {
   "main.css": "/redis-challenge-leaderboard-ui/static/css/main.ee67556a.chunk.css",
-  "main.js": "/redis-challenge-leaderboard-ui/static/js/main.3db969a1.chunk.js",
-  "main.js.map": "/redis-challenge-leaderboard-ui/static/js/main.3db969a1.chunk.js.map",
+  "main.js": "/redis-challenge-leaderboard-ui/static/js/main.e1888384.chunk.js",
+  "main.js.map": "/redis-challenge-leaderboard-ui/static/js/main.e1888384.chunk.js.map",
   "static/js/1.1108d027.chunk.js": "/redis-challenge-leaderboard-ui/static/js/1.1108d027.chunk.js",
   "static/js/1.1108d027.chunk.js.map": "/redis-challenge-leaderboard-ui/static/js/1.1108d027.chunk.js.map",
   "runtime~main.js": "/redis-challenge-leaderboard-ui/static/js/runtime~main.71295ab0.js",
@@ -12,6 +12,6 @@
   "static/media/redis.3c39fafe.svg": "/redis-challenge-leaderboard-ui/static/media/redis.3c39fafe.svg",
   "static/css/main.ee67556a.chunk.css.map": "/redis-challenge-leaderboard-ui/static/css/main.ee67556a.chunk.css.map",
   "index.html": "/redis-challenge-leaderboard-ui/index.html",
-  "precache-manifest.a0ee2e9cde45de23252a0b1fe69e0579.js": "/redis-challenge-leaderboard-ui/precache-manifest.a0ee2e9cde45de23252a0b1fe69e0579.js",
+  "precache-manifest.fdf5581d339d20995d49d6c73e7b824d.js": "/redis-challenge-leaderboard-ui/precache-manifest.fdf5581d339d20995d49d6c73e7b824d.js",
   "service-worker.js": "/redis-challenge-leaderboard-ui/service-worker.js"
 }
