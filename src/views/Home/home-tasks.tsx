@@ -9,7 +9,7 @@ import {
 } from './home-actions';
 
 export function* getData() {
-	setTimeout(() => store.dispatch(HOME_FETCH_REQUEST()), 30 * 1000);
+	setTimeout(() => store.dispatch(HOME_FETCH_REQUEST()), 5 * 1000);
 
 	try {
 		let data = yield get(API.JSON);
