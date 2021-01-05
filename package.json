@@ -12,7 +12,7 @@
 		"gh-pages": "gh-pages -d build -b gh-pages"
 	},
 	"dependencies": {
-		"axios": "^0.18.1",
+		"axios": "^0.21.1",
 		"axios-mock-adapter": "^1.15.0",
 		"classnames": "^2.2.6",
 		"enzyme": "^3.3.0",
